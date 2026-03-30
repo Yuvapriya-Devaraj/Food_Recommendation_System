@@ -1,0 +1,49 @@
+food_name,category,health,timing,season,score,taste,min_age,frequency_limit
+Apple Slices,Snack,Very Healthy,Morning,All,9,Sweet,2,7
+Banana,Snack,Very Healthy,Morning,All,9,Sweet,1,7
+Grapes,Snack,Healthy,Evening,Summer,8,Sweet,0,7
+Orange segments,Snack,Healthy,Morning/Afternoon,Winter,8,Sour,3,4
+Watermelon,Snack,Healthy,Morning/Afternoon,Summer,8,Sweet,2,4
+Papaya cubes,Snack,Very Healthy,Morning/Afternoon,All,8,Sweet,3,3
+Roasted peanuts,Snack,Healthy,Evening,All,7,Salty,5,2
+Boiled sweet potato,Snack,Very healthy,Morning/Afternonn,All,9,sweet,2,4
+Boiled corn,Snack,Healthy,Afternoon/Evening,All,8,Sweet,3,3
+Milk,Snack,Very Healthy,Morning/Night,All,9,Sweet,1,7
+Cheese slice,Snack,Healthy,Morning/Afternoon,All,6,Salty,2,3
+Roasted chickpeas,Snack,Very Healthy,Afternoon/Evening,All,9,Salty,3,4
+Dry fruits mix,Snack,Very Healthy,Morning/Afternoon,All,9,Sweet,3,4
+Samosa,Snack,Unhealthy,Afternoon/Evening,All,3,Spicy,5,1
+Bread and Butter,Snack,Healthy,Morning/Afternoon,All,6,Mild,3,3
+French fries,Snack,Unhealthy,Evening,All,2,Salty,5,1
+Vegetable salad,Snack,Very Healthy,Morning/afternoon,All,10,Mild,3,7
+Ice cream,Snack,Unhealthy,Afternoon/Evening,Summer,2,Sweet,5,7
+Donut,Snack,Unhealthy,Afternoon/Evening,All,2,Sweet,5,1
+Peanut butter toast,Snack,Healthy,Morning/Afternoon,All,7,Mild,5,4
+Oat porridge,Snack,Very Healthy,Morning,All,9,Mild,3,7
+Chocolates,Snack,Unhealty,Afternoon/Evening,All,3,Sweet,5,2
+Biscuits,Snack,Unhealthy,Afternoon/Evening,All,3,Sweet,3,3
+Potato chips,Snack,Unhealthy,Afternoon/Evening,All,2,Salty,5,1
+Rice + Dal + Vegetables,Lunch,Very Healthy,Afternoon,All,10,Mild,2,7
+Roti + Vegetable curry,Lunch,Very Healthy,Afternoon,All,9,Mild,2,7
+Lemon rice,Lunch,Healthy,Afternoon,All,7,Tangy,2,3
+Curd rice,Lunch,Healthy,Afternoon,Summer,8,Mild,2,4
+Vegetable kichdi,Lunch,Very Healthy,Afternoon,All,9,Mild,1,5
+Paneer curry + Roti,Lunch,Healty,Afternoon,All,8,Savory,3,3
+Boiled egg + Vegetables,Lunch,Very Healthy,Afternoon,All,9,Savory,2,4
+Ragi dosa + Vegetable Sagu,Lunch,Very Healthy,Afternoon,All,9,Savory,4,3
+Egg curry + Rice,Lunch,Healthy,Afternoon,All,8,Savory,5,2
+Rasam rice + Cabbage poriyal,Lunch,Very Healthy,Afternoon,All,9,Savory,3,3
+Carrot rice,Lunch,Healthy,Afternoon,All,8,Mild,2,3
+Tomato rice,Lunch,Healthy,Afternoon,All,8,Tangy,2,3
+Fried noodles,Lunch,Unhealthy,Evening,All,4,Savory,4,1
+Veg biryani,Lunch,Healthy,Afternoon,All,7,Savory,3,3
+Rajma rice,Lunch,Very Healthy,Afternoon,All,8,Savory,5,3
+Millet dosa,Lunch,Very Healthy,Morning,All,9,Savory,3,4
+Coconut rice,Lunch,Healthy,Afternoon,All,7,Savory,3,2
+Sambar,Lunch,Very Healthy,Afternoon,All,9,Savory,3,4
+Upma,Lunch,Healthy,Morning,All,8,Savory,3,3
+Pizza,Lunch,Unhealthy,Afternoon,All,3,Savory,5,1
+Soya chunks curry,Lunch,Very Healthy,Afternoon,All,9,Savory,4,3
+Brown rice dal,Lunch,Very Healthy,Afternoon,All,9,Savory,3,4
+Burger,Lunch,Unhealthy,Afternoon,All,3,Savory,5,1
+White sauce pasta,Lunch,Unhealthy,Afternoon,All,4,Savory,5,1
