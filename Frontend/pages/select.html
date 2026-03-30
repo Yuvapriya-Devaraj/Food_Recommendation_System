@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Select Kid Profile</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-100 flex justify-center items-center h-screen">
+
+<!-- MOBILE CONTAINER -->
+<div class="w-[390px] h-screen bg-[#FEFFB3] px-4 py-6 flex flex-col">
+
+<h2 class="text-xl font-bold text-center mb-4">Select Your Profile</h2>
+
+<!-- ADD PROFILE BUTTON (TOP) -->
+<button
+onclick="newProfile()"
+class="w-full py-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold mb-4">
+
+➕ Add New Profile
+
+</button>
+
+<!-- SCROLLABLE KID LIST -->
+<div class="flex-1 overflow-y-auto">
+
+<ul class="space-y-3">
+
+{% for kid in kids %}
+<li>
+
+<button
+onclick="selectKid('{{ kid.kid_id }}')"
+class="w-full py-3 rounded-lg bg-green-400 hover:bg-green-500 text-white font-semibold">
+
+{{ kid.name }} ({{ kid.nickname }})
+
+</button>
+
+</li>
+{% endfor %}
+
+</ul>
+
+</div>
+
+</div>
+
+<script>
+
+function selectKid(kidId){
+    window.location.href = "/home?kid_id=" + kidId;
+}
+
+function newProfile(){
+    window.location.href = "{{ url_for('personalize') }}";
+}
+
+</script>
+
+</body>
+</html>

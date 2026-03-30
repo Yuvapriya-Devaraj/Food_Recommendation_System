@@ -1,0 +1,137 @@
+
+.card-wrapper{
+  display:flex;
+  overflow-x:auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  width:100%;
+  gap:16px;
+}
+
+/* Hide scrollbar (optional) */
+.card-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.page{
+  min-width:100%;
+  display:grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: repeat(3,1fr);
+  gap: 16px;
+  scroll-snap-align: start;
+}
+
+.card{
+  flex-shrink:0;
+  padding:16px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  width:160px ;
+  height:160px;
+  border-radius:16px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family:'Fredoka',sans-serif;
+  text-align: center;
+  cursor: pointer;
+}
+
+.card.snack {
+  transition: transform 0.1s ease;
+  cursor: pointer;
+}
+.card.snack:active {
+  transform: scale(0.95);
+}
+
+
+.snack{
+  background-color:#BF803C9C;
+  color:#864900;
+}
+
+.icon{
+  font-size: 56px;
+}
+
+.text{
+  font-size: 20px;
+}
+
+.lunch{
+  background-color:#FFEA94;
+  color:#1F2A44;
+}
+
+/* Pagination dots */
+.dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+  gap: 8px;
+}
+
+.dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: gray;
+  display: inline-block;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.dots span.active {
+  background-color: rgb(244, 185, 58);
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.back-btn{
+  font-size: 24px;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+.back-btn:active{
+  transform: scale(0.95);
+}
+
+.r-container{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+.r_card{
+  flex-shrink:0;
+  width:255px;
+  height:219px;
+  border-radius: 16px;
+  font-size:30px;
+  font-family: 'Baloo 2',sans-serif;
+  padding:16px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  text-align: center;
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom: 16px; 
+  cursor: pointer;
+}
+
+.r_card:active{
+   transform: scale(0.95);
+}
+
+.r_snack{
+  background-color: #FFF989;
+  color:#754800;
+}
+
+.r_lunch{
+  background-color: #B2FF89;
+  color:#4B9700;
+}
+
+

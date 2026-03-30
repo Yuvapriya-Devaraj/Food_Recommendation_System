@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snack & Lunch Recommendation</title>
+
+  <!--Google fonts-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="../style" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <!--CSS file-->
+
+  <link rel="stylesheet" href="style.css">
+  <!-- Tailwind CDN -->
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-100 flex justify-center ">
+
+  <!-- APP CONTAINER -->
+  <div class="w-[390px] min-h-screen bg-[#FEFFB3] px-4 py-5 relative height-100vh">
+
+    <!-- TOP BAR -->
+    <div class="flex justify-between items-center mb-4 ">
+      <button class="back-btn" onclick="goBack()">⬅️</button>
+<!--
+      <div class="flex gap-3 text-2xl">
+        <a href="profile.html" class="active:scale-90 transition">👤</a>
+        <a href="help.html" class="active:scale-90 transition">❔</a>
+        <a href="settings.html" class="active:scale-90 transition">⚙️</a>
+      </div>-->
+    </div>
+    
+    <!-- FRUIT CHARACTER -->
+    <div class="flex my-6 gap-3">
+<div class="relative justify-center bg-red-600 text-right rounded-3xl w-full h-[48px] text-white text-[32px] font-semibold font-fredoka" style="font-family:'Fredoka',sans-serif;">
+  <!-- Strawberry (parent) -->
+  <div class="absolute text-7xl font align-left -bottom-1">
+
+    🍓
+
+    <!-- Eyes (child, positioned ON the fruit) -->
+    <div class="absolute top-5 left-1/2 -translate-x-1/2 text-2xl">
+      👀
+    </div>
+  </div> 
+  
+  Pick your snack😋
+  </div>
+</div>
+<div class="r_container">
+<div class="r_card r_snack icon">🍪<p class="text">Recommend snack</p></div>
+<div class="r_card r_lunch icon">🍽️<p class="text">Recommend lunch</p></div>
+</div>
+  </div>
+  <div id="recPopup" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg">
+      <h2 class="font-bold mb-3">Your Recommendations</h2>
+      <p id="recText"></p>
+      <button onclick="closePopup()" class="mt-3 px-4 py-2 bg-blue-500 text-white rounded">Close</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+   <script>
+const kidId = localStorage.getItem("kid_id");
+
+// ✅ safe parsing
+const age = parseInt(localStorage.getItem("age")) || 6;
+const favoriteFood = JSON.parse(localStorage.getItem("favorite_food") || "[]");
+
+function showPopup(items) {
+    const popup = document.getElementById("recPopup");
+    const recText = document.getElementById("recText");
+
+    // ✅ FIX: handle undefined/null safely
+    if (!items || items.length === 0) {
+        recText.textContent = "No recommendations found 😅";
+    } else {
+        recText.textContent = items.join(", ");
+    }
+
+    popup.classList.remove("hidden");
+}
+
+function closePopup() {
+    document.getElementById("recPopup").classList.add("hidden");
+}
+
+async function fetchRecommendation(time_of_day) {
+
+    console.log("Sending:", {
+        kid_id: kidId,
+        age_group: age,
+        favorite_food: favoriteFood,
+        time_of_day: time_of_day
+    });
+
+    try {
+        const response = await fetch("/api/recommend", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                kid_id: kidId,
+                age_group: age,
+                favorite_food: favoriteFood,
+                time_of_day: time_of_day
+            })
+        });
+
+        if (!response.ok) {
+            console.error("API Error");
+            showPopup([]);
+            return;
+        }
+
+        const data = await response.json();
+        console.log("Received:", data);
+
+        // ✅ FIX: ALWAYS ensure array
+        let list = [];
+
+        if (Array.isArray(data)) {
+            list = data;
+        } else if (data && Array.isArray(data.data)) {
+            list = data.data;
+        } else {
+            console.warn("Unexpected format:", data);
+            showPopup([]);
+            return;
+        }
+
+        // ✅ Extract names safely
+        const foodNames = list.map(item =>
+            item?.name || item?.food_name || "Unknown Food"
+        );
+
+        console.log("Names:", foodNames);
+
+        showPopup(foodNames);
+
+    } catch (error) {
+        console.error("Fetch failed:", error);
+        showPopup([]);
+    }
+}
+
+// ✅ attach events safely (after DOM loads)
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector(".r_snack")
+        .addEventListener("click", () => fetchRecommendation("Snack"));
+
+    document.querySelector(".r_lunch")
+        .addEventListener("click", () => fetchRecommendation("Lunch"));
+});
+</script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>

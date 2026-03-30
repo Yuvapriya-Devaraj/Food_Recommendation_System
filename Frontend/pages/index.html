@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snack & Lunch Recommendation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+</head>
+
+<body class="bg-slate-100 flex justify-center">
+
+  <div class="max-w-[390px] w-full min-h-screen bg-[#FEFFB3] px-4 py-5 relative">
+    <!-- TOP BAR -->
+    <div class="flex justify-between items-center mb-4">
+      <h1 class="text-2xl font-bold text-green-600">KiddosFood 🥗</h1>
+      <div class="flex gap-3 text-2xl">
+        <a href="profile.html" class="active:scale-90 transition">👤</a>
+        <a href="help.html" class="active:scale-90 transition">❔</a>
+        <a href="settings.html" class="active:scale-90 transition">⚙️</a>
+      </div>
+    </div>
+
+    <!-- FRUIT CHARACTER -->
+    <div class="relative flex justify-center my-6">
+      <div class="bg-red-600 text-white text-[32px] font-semibold rounded-3xl w-full h-[48px] flex items-center justify-center">
+        🍓 Hi! <span id="kid-nickname">Kid</span>
+      </div>
+    </div>
+
+    <!-- SCOREBOARD -->
+    <section class="grid grid-cols-2 gap-4 mb-6">
+      <!-- SCORE CARD -->
+      <div class="bg-yellow-100 rounded-2xl p-4 shadow flex flex-col items-center text-center active:scale-95 transition">
+        <div class="text-3xl mb-1">⭐</div>
+        <p class="text-sm text-yellow-700 font-semibold">My Stars</p>
+        <p id="my-stars" class="text-2xl font-bold text-yellow-800">0</p>
+        <p id="stars-msg" class="text-xs text-yellow-700 mt-1">Great job today!</p>
+      </div>
+
+      <!-- REWARD CARD -->
+      <div class="bg-pink-100 rounded-2xl p-4 shadow flex flex-col items-center text-center active:scale-95 transition">
+        <div class="text-3xl mb-1">🎁</div>
+        <p class="text-sm text-pink-700 font-semibold">My Rewards</p>
+        {% if total_score >= 100 %}
+<p id="my-reward" class="text-lg font-bold text-pink-800">Unlocked 🎉</p>
+{% else %}
+<p id="my-reward" class="text-lg font-bold text-pink-800">Locked 🔒</p>
+{% endif %}
+    </section>
+
+    <!-- MEALS -->
+    <h2 class="text-lg font-semibold text-gray-800 mb-4">What's on your plate today? 😋</h2>
+    <section class="grid grid-cols-2 gap-4">
+      <div onclick="goToSnack()" class="bg-[#BF803C] rounded-2xl p-4 shadow flex flex-col items-center justify-center cursor-pointer active:scale-95 transition">
+        <div class="text-4xl mb-2">🍪</div>
+        <p class="font-semibold text-[#1F2A44]">Snack</p>
+        <p class="text-xs text-[#1F2A44] mt-1">Evening / Break time</p>
+      </div>
+
+      <div onclick="goToLunch()" class="bg-green-100 rounded-2xl p-4 shadow flex flex-col items-center justify-center cursor-pointer hover:bg-green-200 active:scale-95 transition">
+        <div class="text-4xl mb-2">🍽️</div>
+        <p class="font-semibold text-[#1F2A44]">Lunch</p>
+        <p class="text-xs text-[#1F2A44] mt-1">Midday meal</p>
+      </div>
+    </section>
+
+    <div class="mt-6 flex justify-center">
+      <button onclick="goToRecommendation()" class="w-full bg-purple-500 text-white py-3 rounded-2xl font-semibold text-lg hover:bg-purple-600 active:scale-95 transition">
+        Pick for me 🎯
+      </button>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</body>
+
+<script>
+  // Display nickname and check first-time user
+  async function loadScore() {
+
+  const response = await fetch("/api/kids/score");
+
+  const data = await response.json();
+
+  document.getElementById("my-stars").textContent = data.score;
+
+}
+  
+ document.addEventListener("DOMContentLoaded", function() {
+
+  const kidNickname = localStorage.getItem("kid_nickname");
+
+  document.getElementById("kid-nickname").textContent = kidNickname || "Kid";
+
+  loadScore();
+
+});
+  function goToSnack() {
+    localStorage.setItem("meal_type", "snack");
+    window.location.href = "/snack";
+  }
+
+  function goToLunch() {
+    localStorage.setItem("meal_type", "lunch");
+    window.location.href = "/lunch";
+  }
+
+  function goToRecommendation() {
+    window.location.href = "/recommend";
+  }
+</script>
+
+
+</html>

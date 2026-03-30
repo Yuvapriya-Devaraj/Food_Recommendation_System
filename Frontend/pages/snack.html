@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snack & Lunch Recommendation</title>
+
+  <!--Google fonts-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!--CSS file-->
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <!-- Tailwind CDN -->
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-100 flex justify-center ">
+
+  <!-- APP CONTAINER -->
+  <div class="w-[390px] min-h-screen bg-[#FEFFB3] px-4 py-5 relative height-100vh">
+
+    <!-- TOP BAR -->
+    <div class="flex justify-between items-center mb-4 ">
+      <button class="back-btn" onclick="goBack()">⬅️</button>
+<!--
+      <div class="flex gap-3 text-2xl">
+        <a href="profile.html" class="active:scale-90 transition">👤</a>
+        <a href="help.html" class="active:scale-90 transition">❔</a>
+        <a href="settings.html" class="active:scale-90 transition">⚙️</a>
+      </div>-->
+    </div>
+    
+    <!-- FRUIT CHARACTER -->
+    <div class="flex my-6 gap-3">
+<div class="relative justify-center bg-red-600 text-right rounded-3xl w-full h-[48px] text-white text-[32px] font-semibold font-fredoka" style="font-family:'Fredoka',sans-serif;">
+  <!-- Strawberry (parent) -->
+  <div class="absolute text-7xl font align-left -bottom-1">
+
+    🍓
+
+    <!-- Eyes (child, positioned ON the fruit) -->
+    <div class="absolute top-5 left-1/2 -translate-x-1/2 text-2xl">
+      👀
+    </div>
+  </div> 
+  
+  Pick your snack😋
+  </div>
+</div>
+<div class="card-wrapper" id="cardWrapper">
+  <div class="page">
+    <div class="card snack icon" data-food="Apple slices">🍎<p class="text">Apple slices</p></div>
+    <div class="card snack icon" data-food="Banana">🍌<p class="text">Banana</p></div>
+    <div class="card snack icon" data-food="Grapes">🍇<p class="text">Grapes</p></div>
+    <div class="card snack icon" data-food="Orange segments">🍊<p class="text">Orange segments</p></div>
+    <div class="card snack icon" data-food="Watermelon">🍉<p class="text">Watermelon</p></div>
+    <div class="card snack icon" data-food="Papaya cubes">🥭<p class="text">Papaya cubes</p></div>
+    </div>
+    <div class="page">
+    <div class="card snack icon" data-food="Roasted peanuts">🥜<p class="text">Roasted peanuts</p></div>
+    <div class="card snack icon" data-food="Boiled sweet potato">🍠<p class="text">Boiled sweet potato</p></div>
+    <div class="card snack icon" data-food="Boiled corn">🌽<p class="text">Boiled corn</p></div>
+    <div class="card snack icon" data-food="Milk">🥛<p class="text">Milk</p></div>
+    <div class="card snack icon" data-food="Cheese slice">🧀<p class="text">Cheese slice</p></div>
+    <div class="card snack icon" data-food="Roasted chickpeas">🫘<p class="text">Roasted chickpeas</p></div>
+    </div>
+    <div class="page">
+    <div class="card snack icon" data-food="Dry fruits mix">🥙<p class="text">Dry fruits mix</p></div>
+    <div class="card snack icon" data-food="Sandwich">🥪<p class="text">Sandwich</p></div>
+    <div class="card snack icon" data-food="Bread and Butter" style="font-size:40px;">🍞🧈<p class="text">Bread and Butter</p></div>
+    <div class="card snack icon" data-food="French fries">🍟<p class="text">French fries</p></div>
+    <div class="card snack icon" data-food="Vegetable salad">🥗<p class="text">Vegetable salad</p></div>
+    <div class="card snack icon" data-food="Ice cream">🍦<p class="text">Ice cream</p></div>
+    </div>
+    <div class="page">
+    <div class="card snack icon" data-food="Donut">🍩<p class="text">Donut</p></div>
+    <div class="card snack icon" data-food="Peanut butter toast" style="font-size:40px;">🥜🧈<p class="text">Peanut butter toast</p></div>
+    <div class="card snack icon" data-food="Oat porridge">🥣<p class="text">Oat porridge</p></div>
+    <div class="card snack icon" data-food="Chocolates">🍫<p class="text">Chocolates</p></div>
+    <div class="card snack icon" data-food="Potato chips">🥔<p class="text">Potato chips</p></div>
+    </div>
+</div>
+<div id="confirmModal"
+     class="fixed inset-0 bg-black/40 hidden flex items-center justify-center z-50">
+
+  <div class="bg-white rounded-2xl p-6 w-[300px] text-center">
+    <p id="confirmText" class="text-lg font-semibold mb-4"></p>
+
+    <div class="flex justify-around">
+      <button onclick="saveFood()"
+        class="bg-green-500 text-white px-4 py-2 rounded-lg">
+        Yes ✅
+      </button>
+
+      <button onclick="closeModal()"
+        class="bg-red-400 text-white px-4 py-2 rounded-lg">
+        No ❌
+      </button>
+    </div>
+  </div>
+</div>
+
+ <div class="dots" id="dots">
+    <span class="active" data-index="0"></span>
+    <span data-index="1"></span>
+    <span data-index="2"></span>
+    <span data-index="3"></span>
+  </div>
+  </div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+  
+</body>
+</html>
